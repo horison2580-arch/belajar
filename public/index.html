@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pulau Bintang - Belajar Sambil Bermain</title>
+<meta name="description" content="Game belajar berhitung, menyusun kata, dan memori untuk anak SD kelas 3.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%9F%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--sea:#1f86d1;--sky:#b9e6ff;--sun:#ffc83d;--coral:#ff6b5a;--leaf:#38b871;--grape:#8b6cf0;--ink:#1d2b53;--paper:#fffdf5}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:"Baloo 2","Comic Sans MS",system-ui,sans-serif;color:var(--ink);
+ background:radial-gradient(circle at 85% 8%,#fff6c2 0 60px,transparent 62px),linear-gradient(#a6dcff,#e6f8ff 55%,#ffe9a8)}
+body::after{content:"";position:fixed;left:0;right:0;bottom:0;height:70px;background:var(--sea);opacity:.85;
+ border-radius:60% 60% 0 0/100% 100% 0 0;z-index:-1}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;max-width:820px;margin:0 auto;padding:16px 18px 0}
+h1{margin:0;font-size:clamp(1.6rem,5vw,2.4rem);font-weight:800;letter-spacing:.5px}
+.stars{background:var(--paper);border:3px solid var(--ink);border-radius:999px;padding:2px 16px;font-weight:800;font-size:1.3rem;box-shadow:0 4px 0 var(--ink)}
+main{max-width:820px;margin:0 auto;padding:12px 18px 100px;outline:none}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:4px solid var(--ink);outline-offset:3px}
+.hi{text-align:center;font-size:1.4rem;margin:10px 0 18px}
+.islands{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px}
+.isl{border:4px solid var(--ink);padding:26px 16px;display:flex;flex-direction:column;align-items:center;gap:2px;
+ box-shadow:0 8px 0 var(--ink);transition:transform .12s}
+.isl:active,.isl:hover{transform:translateY(4px);box-shadow:0 4px 0 var(--ink)}
+.isl span{font-size:4rem;line-height:1.1}.isl b{font-size:1.5rem}.isl small{font-size:1rem;font-weight:500}
+.i1{background:var(--sun);border-radius:58% 42% 55% 45%/50% 55% 45% 50%}
+.i2{background:#8fe0b3;border-radius:45% 55% 40% 60%/55% 45% 55% 45%}
+.i3{background:#c9b8ff;border-radius:52% 48% 60% 40%/45% 55% 45% 55%}
+.bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-weight:700}
+.back,.btn{background:var(--paper);border:3px solid var(--ink);border-radius:14px;padding:4px 16px;font-weight:700;box-shadow:0 4px 0 var(--ink)}
+.btn.main{background:var(--coral);color:#fff}
+.card{background:var(--paper);border:4px solid var(--ink);border-radius:24px;padding:22px;text-align:center;box-shadow:0 6px 0 var(--ink)}
+.big{font-size:clamp(2.4rem,10vw,4rem);font-weight:800}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.opt{background:var(--sun);border:4px solid var(--ink);border-radius:20px;padding:12px;font-size:2rem;font-weight:800;box-shadow:0 5px 0 var(--ink)}
+.opt.good,.slot.good{background:var(--leaf);color:#fff}.opt.bad{background:var(--coral);color:#fff}
+#msg{text-align:center;font-size:1.4rem;font-weight:700;min-height:2rem}
+.pic{font-size:5.5rem;line-height:1.1}
+.slots,.pool{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:14px 0}
+.slot{width:48px;height:56px;border:3px dashed var(--ink);border-radius:12px;font-size:1.8rem;font-weight:800;display:grid;place-items:center;background:#fff}
+.slot.on{border-style:solid}
+.tile{width:54px;height:60px;background:#c9b8ff;border:3px solid var(--ink);border-radius:14px;font-size:1.9rem;font-weight:800;box-shadow:0 4px 0 var(--ink)}
+.tile:disabled{opacity:.3;box-shadow:none}
+.shake{animation:shake .4s}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.mc{aspect-ratio:1;border:3px solid var(--ink);border-radius:16px;background:var(--grape);color:#fff;font-size:2.2rem;box-shadow:0 4px 0 var(--ink)}
+.mc.up{background:var(--paper);font-size:2.6rem}.mc.ok{background:#8fe0b3}
+.end .trophy{font-size:5rem;animation:pop .7s ease-out}
+.end .st{font-size:3rem;letter-spacing:6px}
+.end .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+@keyframes pop{0%{transform:scale(.2) rotate(-20deg)}70%{transform:scale(1.25)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><h1>🌟 Pulau Bintang</h1><div class="stars" aria-label="Total bintang">⭐ <span id="total">0</span></div></header>
+<main id="stage" tabindex="-1" aria-live="polite"></main>
+<script>
+const $ = s => document.querySelector(s), stage = $('#stage');
+const rnd = (a, b) => Math.floor(Math.random() * (b - a + 1)) + a;
+const shuffle = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(x => x[1]);
+let total = 0, session = 0;
+try { total = +localStorage.getItem('bintang') || 0; } catch (e) {}
+const showTotal = () => $('#total').textContent = total;
+const show = html => { stage.innerHTML = html; };
+const bar = txt => `<div class="bar"><button class="back" data-go="home">← Menu</button><span>${txt}</span></div>`;
+
+function finish(st, text, game, arg = '') {
+  total += st; showTotal();
+  try { localStorage.setItem('bintang', total); } catch (e) {}
+  show(`<div class="card end"><div class="trophy">${st ? '🏆' : '💪'}</div><h2>${st ? 'Hebat sekali!' : 'Ayo coba lagi!'}</h2>
+  <p>${text}</p><div class="st" aria-label="${st} bintang">${'⭐'.repeat(st)}${'☆'.repeat(3 - st)}</div>
+  <div class="row"><button class="btn main" data-go="${game}" data-arg="${arg}">Main lagi</button><button class="btn" data-go="home">Menu</button></div></div>`);
+}
+const starsFor = (ok, n) => ok >= n * .9 ? 3 : ok >= n * .6 ? 2 : ok > 0 ? 1 : 0;
+
+const go = {
+  home() {
+    session++;
+    show(`<p class="hi">Pilih pulau petualanganmu!</p><div class="islands">
+    <button class="isl i1" data-go="mathMenu"><span>🧮</span><b>Pulau Hitung</b><small>Tambah, kurang, kali</small></button>
+    <button class="isl i2" data-go="kata"><span>🔤</span><b>Pulau Kata</b><small>Susun huruf jadi kata</small></button>
+    <button class="isl i3" data-go="memori"><span>🐘</span><b>Pulau Memori</b><small>Cari pasangan hewan</small></button></div>`);
+  },
+  mathMenu() {
+    session++;
+    show(bar('Pulau Hitung') + `<p class="hi">Mau belajar apa?</p><div class="opts">
+    <button class="opt" data-go="mathPlay" data-arg="+">➕ Tambah</button><button class="opt" data-go="mathPlay" data-arg="-">➖ Kurang</button>
+    <button class="opt" data-go="mathPlay" data-arg="x">✖️ Kali</button><button class="opt" data-go="mathPlay" data-arg="?">🎲 Campur</button></div>`);
+  },
+  mathPlay(op) {
+    const my = ++session, N = 8; let n = 0, ok = 0, lock = false;
+    (function next() {
+      if (n === N) return finish(starsFor(ok, N), `Kamu benar ${ok} dari ${N} soal.`, 'mathPlay', op);
+      n++;
+      const o = op === '?' ? '+-x'[rnd(0, 2)] : op; let a, b, ans;
+      if (o === '+') { a = rnd(10, 99); b = rnd(10, 99); ans = a + b; }
+      else if (o === '-') { a = rnd(30, 99); b = rnd(10, a - 1); ans = a - b; }
+      else { a = rnd(2, 10); b = rnd(2, 10); ans = a * b; }
+      const set = new Set([ans]); while (set.size < 4) { const d = ans + rnd(-10, 10); if (d > 0) set.add(d); }
+      show(bar(`Soal ${n} dari ${N}`) + `<div class="card big">${a} ${o === 'x' ? '×' : o} ${b} = ?</div><div class="opts">
+        ${shuffle([...set]).map(v => `<button class="opt" data-v="${v}">${v}</button>`).join('')}</div><p id="msg"></p>`);
+      const btns = [...stage.querySelectorAll('.opt')];
+      btns.forEach(bt => bt.onclick = () => {
+        if (lock) return; lock = true;
+        const good = +bt.dataset.v === ans;
+        if (good) ok++; else bt.classList.add('bad');
+        btns.find(x => +x.dataset.v === ans).classList.add('good');
+        $('#msg').textContent = good ? 'Benar! 🎉' : 'Jawaban yang benar: ' + ans;
+        setTimeout(() => { if (my === session) { lock = false; next(); } }, 1100);
+      });
+    })();
+  },
+  kata() {
+    const my = ++session, words = shuffle([['KUCING','🐱'],['APEL','🍎'],['BUKU','📚'],['SEPEDA','🚲'],['BULAN','🌙'],['IKAN','🐟'],
+      ['PISANG','🍌'],['RUMAH','🏠'],['KELINCI','🐰'],['BINTANG','⭐'],['PAYUNG','☂️'],['GAJAH','🐘']]).slice(0, 6);
+    let n = 0, ok = 0, lock = false;
+    (function next() {
+      if (n === words.length) return finish(starsFor(ok, words.length), `Kamu menyusun ${ok} dari ${words.length} kata dengan benar.`, 'kata');
+      const [w, pic] = words[n++]; let typed = [], letters = w.split(''), scr;
+      do { scr = shuffle(letters.map((c, i) => i)); } while (scr.map(i => letters[i]).join('') === w);
+      show(bar(`Kata ${n} dari ${words.length}`) + `<div class="card"><div class="pic">${pic}</div><p>Susun huruf menjadi nama gambar ini</p>
+        <div class="slots" id="slots"></div><div class="pool" id="pool"></div><button class="btn" id="clr">Hapus</button><p id="msg"></p></div>`);
+      const draw = () => {
+        $('#slots').innerHTML = letters.map((_, i) => `<div class="slot ${typed[i] !== undefined ? 'on' : ''}">${typed[i] !== undefined ? letters[typed[i]] : ''}</div>`).join('');
+        $('#pool').innerHTML = scr.map(i => `<button class="tile" data-i="${i}" ${typed.includes(i) ? 'disabled' : ''}>${letters[i]}</button>`).join('');
+      };
+      draw();
+      $('#clr').onclick = () => { if (!lock) { typed = []; draw(); } };
+      $('#pool').onclick = e => {
+        const t = e.target.closest('.tile'); if (!t || lock || t.disabled) return;
+        typed.push(+t.dataset.i); draw();
+        if (typed.length < letters.length) return;
+        const good = typed.map(i => letters[i]).join('') === w;
+        if (good) { lock = true; ok++; $('#msg').textContent = 'Benar! 🎉'; stage.querySelectorAll('.slot').forEach(s => s.classList.add('good')); setTimeout(() => { if (my === session) { lock = false; next(); } }, 1200); }
+        else { $('#msg').textContent = 'Belum tepat, coba lagi!'; $('#slots').classList.add('shake'); setTimeout(() => { typed = []; if (my === session) { draw(); $('#msg').textContent = ''; } }, 700); }
+      };
+    })();
+  },
+  memori() {
+    const my = ++session, em = shuffle(['🐘','🦁','🐒','🐢','🦜','🐬','🐼','🦊']).slice(0, 6), cards = shuffle([...em, ...em]);
+    let open = [], moves = 0, found = 0, lock = false;
+    show(bar('Pulau Memori') + `<p class="hi">Temukan 6 pasang hewan yang sama!</p><div class="grid">${cards.map((_, i) => `<button class="mc" data-i="${i}" aria-label="Kartu ${i + 1}">❓</button>`).join('')}</div><p id="msg"></p>`);
+    stage.querySelectorAll('.mc').forEach(c => c.onclick = () => {
+      if (lock || open.includes(c) || c.classList.contains('ok')) return;
+      c.classList.add('up'); c.textContent = cards[c.dataset.i]; open.push(c);
+      if (open.length < 2) return;
+      moves++; lock = true; const [x, y] = open;
+      if (x.textContent === y.textContent) {
+        x.classList.add('ok'); y.classList.add('ok'); open = []; lock = false; found++;
+        $('#msg').textContent = 'Pasangan ditemukan! ✨';
+        if (found === 6) setTimeout(() => { if (my === session) finish(moves <= 9 ? 3 : moves <= 13 ? 2 : 1, `Selesai dalam ${moves} langkah.`, 'memori'); }, 900);
+      } else setTimeout(() => { if (my !== session) return; open.forEach(k => { k.classList.remove('up'); k.textContent = '❓'; }); open = []; lock = false; }, 800);
+    });
+  }
+};
+stage.addEventListener('click', e => {
+  const b = e.target.closest('[data-go]');
+  if (b && go[b.dataset.go]) { go[b.dataset.go](b.dataset.arg); window.scrollTo(0, 0); }
+});
+showTotal(); go.home();
+</script>
+</body>
+</html>
