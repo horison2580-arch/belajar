@@ -1,0 +1,11 @@
+{
+  "name": "pulau-bintang",
+  "version": "1.0.0",
+  "description": "Game belajar untuk anak SD kelas 3: enam permainan: hitung, kata, memori, pola, jam, dan kuis.",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": { "node": ">=18" }
+}
